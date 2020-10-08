@@ -55,18 +55,18 @@
   };
 </script>
 
-  <meta name="description" content="12345678910111213141516171819202122232425262728/* * &amp;#123;1&amp;#125; n &amp;lt;=1 * n/2 n偶数 * 3*n+1 n奇数 * */public class Hailstone &amp;#123;    public static int calculate(int n)&amp;#123;        int length = 1;">
+  <meta name="description" content="1234567891011121314151617181920212223242526272829303132333435363738394041public class Sum &amp;#123;    //线性递归 T(n) = O(1)*(n+1) = O(n)    public static int elasticsum(int[] arr, int n)&amp;#123;        int s">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hailstone序列-算法有穷性">
-<meta property="og:url" content="http://yoursite.com/2020/10/03/Hailstone序列-算法有穷性/index.html">
+<meta property="og:title" content="数组求和：迭代、线性递归、二分递归">
+<meta property="og:url" content="http://yoursite.com/2020/10/04/数组求和：迭代、线性递归、二分递归/index.html">
 <meta property="og:site_name" content="quanjw|点亮橘子树">
-<meta property="og:description" content="12345678910111213141516171819202122232425262728/* * &amp;#123;1&amp;#125; n &amp;lt;=1 * n/2 n偶数 * 3*n+1 n奇数 * */public class Hailstone &amp;#123;    public static int calculate(int n)&amp;#123;        int length = 1;">
+<meta property="og:description" content="1234567891011121314151617181920212223242526272829303132333435363738394041public class Sum &amp;#123;    //线性递归 T(n) = O(1)*(n+1) = O(n)    public static int elasticsum(int[] arr, int n)&amp;#123;        int s">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-10-03T09:19:15.244Z">
+<meta property="og:updated_time" content="2020-10-08T15:17:22.601Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hailstone序列-算法有穷性">
-<meta name="twitter:description" content="12345678910111213141516171819202122232425262728/* * &amp;#123;1&amp;#125; n &amp;lt;=1 * n/2 n偶数 * 3*n+1 n奇数 * */public class Hailstone &amp;#123;    public static int calculate(int n)&amp;#123;        int length = 1;">
-  <link rel="canonical" href="http://yoursite.com/2020/10/03/Hailstone序列-算法有穷性/">
+<meta name="twitter:title" content="数组求和：迭代、线性递归、二分递归">
+<meta name="twitter:description" content="1234567891011121314151617181920212223242526272829303132333435363738394041public class Sum &amp;#123;    //线性递归 T(n) = O(1)*(n+1) = O(n)    public static int elasticsum(int[] arr, int n)&amp;#123;        int s">
+  <link rel="canonical" href="http://yoursite.com/2020/10/04/数组求和：迭代、线性递归、二分递归/">
 
 
 <script id="page-configurations">
@@ -80,7 +80,7 @@
   };
 </script>
 
-  <title>Hailstone序列-算法有穷性 | quanjw|点亮橘子树</title>
+  <title>数组求和：迭代、线性递归、二分递归 | quanjw|点亮橘子树</title>
   
 
 
@@ -206,7 +206,7 @@
   
   
   <div class="post-block post">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/10/03/Hailstone序列-算法有穷性/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/10/04/数组求和：迭代、线性递归、二分递归/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="quanjw">
@@ -218,7 +218,7 @@
       <meta itemprop="name" content="quanjw|点亮橘子树">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">Hailstone序列-算法有穷性
+        <h1 class="post-title" itemprop="name headline">数组求和：迭代、线性递归、二分递归
 
           
         </h1>
@@ -234,11 +234,19 @@
                 
               
 
-              <time title="Created: 2020-10-03 17:18:45 / Modified: 17:19:15" itemprop="dateCreated datePublished" datetime="2020-10-03T17:18:45+08:00">2020-10-03</time>
+              <time title="Created: 2020-10-04 17:23:39" itemprop="dateCreated datePublished" datetime="2020-10-04T17:23:39+08:00">2020-10-04</time>
             </span>
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-10-08 23:17:22" itemprop="dateModified" datetime="2020-10-08T23:17:22+08:00">2020-10-08</time>
+              </span>
             
           
 
@@ -253,7 +261,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line"> * &#123;1&#125; n &lt;=1</span><br><span class="line"> * n/2 n偶数</span><br><span class="line"> * 3*n+1 n奇数</span><br><span class="line"> * */</span><br><span class="line">public class Hailstone &#123;</span><br><span class="line">    public static int calculate(int n)&#123;</span><br><span class="line">        int length = 1;</span><br><span class="line">        while (1&lt;n)&#123;</span><br><span class="line">            if (n%2 == 0)&#123;</span><br><span class="line">                n = n/2;</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                n = 3*n+1;</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.printf(&quot;%d \t&quot;,n);</span><br><span class="line">            if ( length%10==0) System.out.println();</span><br><span class="line">            length++;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println();</span><br><span class="line">        return length;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        int number = (int)(10000000*Math.random());</span><br><span class="line">        System.out.printf(&quot;number is %d \n&quot;,number);</span><br><span class="line">        System.out.printf(&quot;length is %d \n&quot;,Hailstone.calculate(number));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">public class Sum &#123;</span><br><span class="line">    //线性递归 T(n) = O(1)*(n+1) = O(n)</span><br><span class="line">    public static int elasticsum(int[] arr, int n)&#123;</span><br><span class="line">        int sum = 0;</span><br><span class="line">        try &#123;</span><br><span class="line">            sum =  (n &lt; 1)?0: elasticsum(arr,n-1)+arr[n-1];</span><br><span class="line">        &#125; catch (Error e) &#123;</span><br><span class="line">            System.out.println();</span><br><span class="line">            System.out.println(&quot;Error:stack length &quot;+n+&quot;:&quot; + e.getMessage());</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        return  sum;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //二分递归 T(n) = 0(1)(2^0+2^1+2^3+2^logn) = O(1)*(2^(logn+1) -1) = O(n)</span><br><span class="line">    public static int dichotomysum(int[] arr,int lo,int hi)&#123;</span><br><span class="line">        if (lo == hi)&#123;</span><br><span class="line">            return arr[lo];</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            int mid = (lo+hi)/2;</span><br><span class="line">            return dichotomysum(arr,lo,mid)+dichotomysum(arr,mid+1,hi);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //迭代 O(n)</span><br><span class="line">    public static int iteratesum(int[] arr)&#123;</span><br><span class="line">        int sum = 0;</span><br><span class="line">        for (int i = 0; i &lt; arr.length; i++)</span><br><span class="line">            sum+=arr[i];</span><br><span class="line">        return sum;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        MyUtil myUtil = new MyUtil();</span><br><span class="line">        int[] arr = myUtil.produceArr(1000);</span><br><span class="line">        myUtil.printArr(arr);</span><br><span class="line">        System.out.println(Sum.elasticsum(arr,arr.length));</span><br><span class="line">        System.out.println(Sum.iteratesum(arr));</span><br><span class="line">        System.out.println(Sum.dichotomysum(arr,0,arr.length-1));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
     </div>
@@ -271,8 +279,8 @@
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/2020/10/02/数据结构与算法-希尔排序/" rel="next" title="数据结构与算法-希尔排序">
-                  <i class="fa fa-chevron-left"></i> 数据结构与算法-希尔排序
+                <a href="/2020/10/03/Hailstone序列-算法有穷性/" rel="next" title="Hailstone序列-算法有穷性">
+                  <i class="fa fa-chevron-left"></i> Hailstone序列-算法有穷性
                 </a>
               
             </div>
@@ -280,10 +288,6 @@
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-              
-                <a href="/2020/10/04/数组求和：迭代、线性递归、二分递归/" rel="prev" title="数组求和：迭代、线性递归、二分递归">
-                  数组求和：迭代、线性递归、二分递归 <i class="fa fa-chevron-right"></i>
-                </a>
               
             </div>
           </div>

@@ -201,6 +201,80 @@
   
   
   <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/11/08/有序数组去重-高效版/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="quanjw">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="quanjw|点亮橘子树">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2020/11/08/有序数组去重-高效版/" class="post-title-link" itemprop="url">有序数组去重-高效版</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2020-11-08 23:25:02 / Modified: 23:26:26" itemprop="dateCreated datePublished" datetime="2020-11-08T23:25:02+08:00">2020-11-08</time>
+            </span>
+          
+            
+
+            
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">public class Distinct &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        //O(n)</span><br><span class="line">        int[] arr =&#123;1,1,2,2,2,3,3,3,3,4,4,5,5,6,6,6,6,6,7&#125;;</span><br><span class="line">        int j=0,i=0,size=0;</span><br><span class="line">        while (++j&lt;arr.length)&#123;</span><br><span class="line">            if (arr[i] != arr[j])</span><br><span class="line">                arr[++i] = arr[j];</span><br><span class="line">            //System.out.println(&quot;j=&quot;+j);</span><br><span class="line">            //j++;</span><br><span class="line">        &#125;</span><br><span class="line">        size = ++i;</span><br><span class="line"></span><br><span class="line">        //System.out.println(&quot;arr length = &quot;+arr.length);</span><br><span class="line">        //System.out.println(&quot;size length = &quot;+size);</span><br><span class="line">        //System.out.println(&quot;reduce size = &quot; +(j-i));</span><br><span class="line"></span><br><span class="line">        for (int k = 0; k &lt; size; k++) &#123;</span><br><span class="line">            System.out.println(arr[k]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/11/05/使用-bitwarden-rs-搭建自托管的密码服务器/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -909,78 +983,6 @@
   </article>
 
     
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/19/数据结构与算法-冒泡排序/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="quanjw">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="quanjw|点亮橘子树">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2020/09/19/数据结构与算法-冒泡排序/" class="post-title-link" itemprop="url">数据结构与算法-冒泡排序</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              
-                
-              
-
-              <time title="Created: 2020-09-19 13:14:55 / Modified: 23:00:43" itemprop="dateCreated datePublished" datetime="2020-09-19T13:14:55+08:00">2020-09-19</time>
-            </span>
-          
-            
-
-            
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">public class BubbleSort &#123;</span><br><span class="line">    public void sort()&#123;</span><br><span class="line">        int[] arr = &#123;3,40,24,131,26,824,42,642,434,73&#125;;</span><br><span class="line">        int temp;</span><br><span class="line">        for (int i = 0 ;i&lt; arr.length-1;i++)&#123;</span><br><span class="line">            for (int j = 0;j&lt; arr.length-1-i;j++)&#123;</span><br><span class="line">                if (arr[j] &gt; arr[j+1])&#123;</span><br><span class="line">                    temp = arr[j];</span><br><span class="line">                    arr[j] = arr[j+1];</span><br><span class="line">                    arr[j+1] = temp;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        for (int k = 0 ; k &lt; arr.length-1;k++)&#123;</span><br><span class="line">            System.out.println(arr[k]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public static void main(String args[])&#123;</span><br><span class="line">        BubbleSort bubble = new BubbleSort();</span><br><span class="line">        bubble.sort();</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </div>
 
   
@@ -1030,7 +1032,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-count">16</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

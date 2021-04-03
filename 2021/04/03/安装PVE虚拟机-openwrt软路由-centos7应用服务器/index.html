@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.4.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="前言垃圾佬的快乐就是捡垃圾，然后各种折腾。工控机的16G msata已经不够用了。想着ssd最好还是可靠一点，所以淘宝130又淘了一根三星的128G，店家三年质保，应该可以的。本文，是根据回忆记录的，所以不是很详细。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="安装PVE虚拟机+openwrt软路由+centos7应用服务器">
+<meta property="og:url" content="http://yoursite.com/2021/04/03/安装PVE虚拟机-openwrt软路由-centos7应用服务器/index.html">
+<meta property="og:site_name" content="quanjw|点亮橘子树">
+<meta property="og:description" content="前言垃圾佬的快乐就是捡垃圾，然后各种折腾。工控机的16G msata已经不够用了。想着ssd最好还是可靠一点，所以淘宝130又淘了一根三星的128G，店家三年质保，应该可以的。本文，是根据回忆记录的，所以不是很详细。">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2021-04-03T14:56:37.977Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="安装PVE虚拟机+openwrt软路由+centos7应用服务器">
+<meta name="twitter:description" content="前言垃圾佬的快乐就是捡垃圾，然后各种折腾。工控机的16G msata已经不够用了。想着ssd最好还是可靠一点，所以淘宝130又淘了一根三星的128G，店家三年质保，应该可以的。本文，是根据回忆记录的，所以不是很详细。">
+  <link rel="canonical" href="http://yoursite.com/2021/04/03/安装PVE虚拟机-openwrt软路由-centos7应用服务器/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>安装PVE虚拟机+openwrt软路由+centos7应用服务器 | quanjw|点亮橘子树</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">quanjw|点亮橘子树</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/04/03/安装PVE虚拟机-openwrt软路由-centos7应用服务器/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="quanjw">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="quanjw|点亮橘子树">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">安装PVE虚拟机+openwrt软路由+centos7应用服务器
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2021-04-03 22:52:48 / Modified: 22:56:37" itemprop="dateCreated datePublished" datetime="2021-04-03T22:52:48+08:00">2021-04-03</time>
+            </span>
+          
+            
+
+            
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>垃圾佬的快乐就是捡垃圾，然后各种折腾。工控机的16G msata已经不够用了。想着ssd最好还是可靠一点，所以淘宝130又淘了一根三星的128G，店家三年质保，应该可以的。本文，是根据回忆记录的，所以不是很详细。</p><a id="more"></a>
+<h1 id="安装PVE"><a href="#安装PVE" class="headerlink" title="安装PVE"></a>安装PVE</h1><h2 id="制作U-盘安装介质"><a href="#制作U-盘安装介质" class="headerlink" title="制作U 盘安装介质"></a>制作U 盘安装介质</h2><p>可自行查看proxmox手册。</p>
+<ul>
+<li>下载镜像 <a href="https://www.proxmox.com/en/downloads/category/iso-images-pve" target="_blank" rel="noopener">https://www.proxmox.com/en/downloads/category/iso-images-pve</a></li>
+<li>OSX 下的制作过程<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#用hdiutil 的convert 选项将.iso 文件转换为.img 格式，示例如下。</span><br><span class="line">hdiutil convert -format UDRW -o proxmox-ve_*.dmg proxmox-ve_*.iso</span><br><span class="line"></span><br><span class="line">#注意别搞错了diskX，X是U盘对应设备的数字</span><br><span class="line">diskutil list</span><br><span class="line">diskutil unmountDisk /dev/diskX</span><br><span class="line">sudo dd if=proxmox-ve_*.dmg of=/dev/rdiskX bs=1m</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="更换msata"><a href="#更换msata" class="headerlink" title="更换msata"></a>更换msata</h2><p>首先断电拆机，更换msata，拧上螺丝。这根16G的，就期待有缘人了。</p>
+<h2 id="安装系统"><a href="#安装系统" class="headerlink" title="安装系统"></a>安装系统</h2><p>插入U盘，启动电源，按步骤提示就好了，没啥花头，就是填个主机地址，登录密码。</p>
+<h2 id="Web管理"><a href="#Web管理" class="headerlink" title="Web管理"></a>Web管理</h2><p>笔记本连机器第一个网口，静态路由配置好。然后浏览器输入主机IP<code>https://192.168.100.2:8006</code>即可登录。</p>
+<h2 id="网卡桥接"><a href="#网卡桥接" class="headerlink" title="网卡桥接"></a>网卡桥接</h2><p>在设备网络里面都添加上，默认只有第一个添加了。</p>
+<h1 id="安装openwrt"><a href="#安装openwrt" class="headerlink" title="安装openwrt"></a>安装openwrt</h1><h2 id="下载镜像-https-openwrt-org-zh-downloads"><a href="#下载镜像-https-openwrt-org-zh-downloads" class="headerlink" title="下载镜像 https://openwrt.org/zh/downloads"></a>下载镜像 <a href="https://openwrt.org/zh/downloads" target="_blank" rel="noopener">https://openwrt.org/zh/downloads</a></h2><h2 id="pve安装openwrt"><a href="#pve安装openwrt" class="headerlink" title="pve安装openwrt"></a>pve安装openwrt</h2><ul>
+<li><p>创建虚拟机，我是分配了2C 512M，绰绰有余。开机启动也勾上</p>
+</li>
+<li><p>分离删除硬盘、CD-ROM设备。</p>
+</li>
+<li><p>网络添加一个lan口 一个wan口</p>
+</li>
+<li><p>导入img转换成模板。先通过Web管理界面上传到loca，然后就可以转换了。可以参考此文，<a href="https://zhangguanzhang.github.io/2020/05/13/x86-router-flash/" target="_blank" rel="noopener">https://zhangguanzhang.github.io/2020/05/13/x86-router-flash/</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#把img固件上传到pve的机器上，后用命令转成qcow2文件</span><br><span class="line">qemu-img convert -f raw  -O qcow2 openwrt-x86-64-generic-squashfs-combined-efi.img op.qcow2</span><br><span class="line">#检查下，应该输出No errors</span><br><span class="line">qemu-img check op.qcow2</span><br><span class="line">#导入成硬盘，这里vm的id是对应前面的vmid，前面没设置的话web控制台上看下openwrt的虚机的vmid</span><br><span class="line">qm importdisk 100 op.qcow2 local-lvm</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>后面就是去虚拟机那边编辑下这个未添加的硬盘，作为sata</p>
+</li>
+<li><p>启动顺序修改成这块硬盘，启动虚拟机就可以了</p>
+</li>
+</ul>
+<h2 id="web管理界面"><a href="#web管理界面" class="headerlink" title="web管理界面"></a>web管理界面</h2><p>笔记本连接lan口，配置DHCP，登录到192.168.0.1还是1.1忘记了。DHCP的 自己看下就知道了。<br>账号密码是 koolshare。</p>
+<h2 id="网络配置"><a href="#网络配置" class="headerlink" title="网络配置"></a>网络配置</h2><p>拨号了。wan口修改下，pppoe拨号，输入账号密码。保存并应用配置</p>
+<h2 id="酷软配置"><a href="#酷软配置" class="headerlink" title="酷软配置"></a>酷软配置</h2><p>因为之前有配置，所以备份文件解压到/koolshare就好了。然后进去重新启动下服务就可以了</p>
+<h3 id="Let’s-Encrypt"><a href="#Let’s-Encrypt" class="headerlink" title="Let’s Encrypt"></a>Let’s Encrypt</h3><ol>
+<li>到gayhub上下载安装包<a href="https://github.com/acmesh-official/acme.sh/archive/master.tar.gz" target="_blank" rel="noopener">https://github.com/acmesh-official/acme.sh/archive/master.tar.gz</a> 上传到 /koolshare/acme/ <code>tar -zxvf</code> 然后把所有文件 mv到acme目录下。</li>
+<li>重启路由器。</li>
+<li>输入Dnspod ID Dnspod Key等数据即可<h1 id="安装centos"><a href="#安装centos" class="headerlink" title="安装centos"></a>安装centos</h1><h2 id="下载镜像"><a href="#下载镜像" class="headerlink" title="下载镜像"></a>下载镜像</h2>在这里下载 <a href="https://www.centos.org/download/" target="_blank" rel="noopener">https://www.centos.org/download/</a><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2>比openwrt简单</li>
+</ol>
+<ul>
+<li>上传镜像到 local</li>
+<li>创建虚拟机的时候 选择这个镜像就好了。硬盘我分配了32G应该够用了</li>
+<li>网络接口和openwrt同一个</li>
+<li>进入centos 配置，后面再细说</li>
+</ul>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li>Proxmox6.0中文手册 <a href="https://www.proxmox.wiki/?thread-46.htm" target="_blank" rel="noopener">https://www.proxmox.wiki/?thread-46.htm</a></li>
+<li>proxmox x86软路由笔记 <a href="https://zhangguanzhang.github.io/2020/05/13/x86-router-flash/" target="_blank" rel="noopener">https://zhangguanzhang.github.io/2020/05/13/x86-router-flash/</a></li>
+<li>软路由科普系列 篇二：PVE安装iKuai OpenWrt 旁路由 基础设置 保姆级全教程 <a href="https://post.smzdm.com/p/awrx4lxm/" target="_blank" rel="noopener">https://post.smzdm.com/p/awrx4lxm/</a></li>
+<li>酷软一些资源可能需要自己去找 </li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2021/04/01/记录一次PVE-Web管理界面无法访问的解决过程/" rel="next" title="记录一次PVE Web管理界面无法访问的解决过程">
+                  <i class="fa fa-chevron-left"></i> 记录一次PVE Web管理界面无法访问的解决过程
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2021/04/03/centos7-2-搭建nginx-php7-2-mysql5-7/" rel="prev" title="centos7.2 搭建nginx+php7.2+mysql5.7">
+                  centos7.2 搭建nginx+php7.2+mysql5.7 <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装PVE"><span class="nav-number">2.</span> <span class="nav-text">安装PVE</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#制作U-盘安装介质"><span class="nav-number">2.1.</span> <span class="nav-text">制作U 盘安装介质</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更换msata"><span class="nav-number">2.2.</span> <span class="nav-text">更换msata</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装系统"><span class="nav-number">2.3.</span> <span class="nav-text">安装系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Web管理"><span class="nav-number">2.4.</span> <span class="nav-text">Web管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网卡桥接"><span class="nav-number">2.5.</span> <span class="nav-text">网卡桥接</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装openwrt"><span class="nav-number">3.</span> <span class="nav-text">安装openwrt</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#下载镜像-https-openwrt-org-zh-downloads"><span class="nav-number">3.1.</span> <span class="nav-text">下载镜像 https://openwrt.org/zh/downloads</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pve安装openwrt"><span class="nav-number">3.2.</span> <span class="nav-text">pve安装openwrt</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#web管理界面"><span class="nav-number">3.3.</span> <span class="nav-text">web管理界面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络配置"><span class="nav-number">3.4.</span> <span class="nav-text">网络配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#酷软配置"><span class="nav-number">3.5.</span> <span class="nav-text">酷软配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Let’s-Encrypt"><span class="nav-number">3.5.1.</span> <span class="nav-text">Let’s Encrypt</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装centos"><span class="nav-number">4.</span> <span class="nav-text">安装centos</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#下载镜像"><span class="nav-number">4.1.</span> <span class="nav-text">下载镜像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">4.2.</span> <span class="nav-text">安装</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">quanjw</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">tags</span>
+        
+      </div>
+    
+  </nav>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 – <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">quanjw</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.4.0</div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+
+
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.0"></script><script src="/js/motion.js?v=7.4.0"></script>
+<script src="/js/schemes/pisces.js?v=7.4.0"></script>
+<script src="/js/next-boot.js?v=7.4.0"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -62,7 +62,7 @@
 <meta property="og:site_name" content="quanjw|点亮橘子树">
 <meta property="og:description" content="centos7.2 搭建nginx php7.2 mysql安装源123sudo yum install epel-releasesudo rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-7.rpm">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2021-04-03T14:54:54.620Z">
+<meta property="og:updated_time" content="2021-04-04T15:32:34.350Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="centos7.2 搭建nginx+php7.2+mysql5.7">
 <meta name="twitter:description" content="centos7.2 搭建nginx php7.2 mysql安装源123sudo yum install epel-releasesudo rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-7.rpm">
@@ -234,11 +234,19 @@
                 
               
 
-              <time title="Created: 2021-04-03 22:54:32 / Modified: 22:54:54" itemprop="dateCreated datePublished" datetime="2021-04-03T22:54:32+08:00">2021-04-03</time>
+              <time title="Created: 2021-04-03 22:54:32" itemprop="dateCreated datePublished" datetime="2021-04-03T22:54:32+08:00">2021-04-03</time>
             </span>
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-04-04 23:32:34" itemprop="dateModified" datetime="2021-04-04T23:32:34+08:00">2021-04-04</time>
+              </span>
             
           
 
@@ -260,6 +268,11 @@
 <h3 id="安装php72以及模块"><a href="#安装php72以及模块" class="headerlink" title="安装php72以及模块"></a>安装php72以及模块</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install php72</span><br><span class="line"></span><br><span class="line">sudo yum install php72-php-fpm php72-php-gd php72-php-json php72-php-mbstring php72-php-mysqlnd php72-php-xml php72-php-xmlrpc php72-php-opcache php72-php-zip</span><br><span class="line"></span><br><span class="line">#设置php-fpm开机启动</span><br><span class="line">sudo systemctl enable php72-php-fpm.service</span><br><span class="line"></span><br><span class="line">#常用 php-fpm 命令</span><br><span class="line"># 开启服务</span><br><span class="line">$ sudo systemctl start php72-php-fpm.service</span><br><span class="line"># 停止服务</span><br><span class="line">$ sudo systemctl stop php72-php-fpm.service</span><br><span class="line"># 查看状态</span><br><span class="line">$ sudo systemctl status php72-php-fpm.service</span><br></pre></td></tr></table></figure>
 
 <h3 id="安装mysql"><a href="#安装mysql" class="headerlink" title="安装mysql"></a>安装mysql</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#安装源</span><br><span class="line">wget https://dev.mysql.com/get/mysql80-community-release-el7-3.noarch.rpm</span><br><span class="line">rpm -Uvh mysql80-community-release-el7-3.noarch.rpm</span><br><span class="line">#编辑</span><br><span class="line">/etc/yum.repos.d/mysql-community.repo</span><br><span class="line">MySQL 5.7 Community Server enabled=1</span><br><span class="line">MySQL 8.0 Community Server enabled=0</span><br><span class="line"></span><br><span class="line">#安装mysql</span><br><span class="line">yum install mysql-community-server</span><br><span class="line"></span><br><span class="line">#开机启动</span><br><span class="line">systemctl enable  mysqld</span><br><span class="line">systemctl start  mysqld</span><br></pre></td></tr></table></figure>
+
+<h4 id="配置mysql"><a href="#配置mysql" class="headerlink" title="配置mysql"></a>配置mysql</h4><p>mysql 安装完成之后，生成的默认密码在 /var/log/mysqld.log 文件中,查找<br><code>grep &#39;temporary password&#39; /var/log/mysqld.log</code></p>
+<p>修改root密码<br><code>ALTER USER &#39;root&#39;@&#39;localhost&#39; IDENTIFIED BY &#39;MyNewPass4!&#39;;</code></p>
+<p>添加远程登录用户<br><code>GRANT ALL PRIVILEGES ON *.* TO &#39;zhangsan&#39;@&#39;%&#39; IDENTIFIED BY &#39;Zhangsan2018!&#39; WITH GRANT OPTION;</code></p>
+
     </div>
 
     
@@ -336,7 +349,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#centos7-2-搭建nginx-php7-2-mysql"><span class="nav-number">1.</span> <span class="nav-text">centos7.2 搭建nginx php7.2 mysql</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装源"><span class="nav-number">1.0.1.</span> <span class="nav-text">安装源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装nginx"><span class="nav-number">1.0.2.</span> <span class="nav-text">安装nginx</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装php72以及模块"><span class="nav-number">1.0.3.</span> <span class="nav-text">安装php72以及模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装mysql"><span class="nav-number">1.0.4.</span> <span class="nav-text">安装mysql</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#centos7-2-搭建nginx-php7-2-mysql"><span class="nav-number">1.</span> <span class="nav-text">centos7.2 搭建nginx php7.2 mysql</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装源"><span class="nav-number">1.0.1.</span> <span class="nav-text">安装源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装nginx"><span class="nav-number">1.0.2.</span> <span class="nav-text">安装nginx</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装php72以及模块"><span class="nav-number">1.0.3.</span> <span class="nav-text">安装php72以及模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装mysql"><span class="nav-number">1.0.4.</span> <span class="nav-text">安装mysql</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#配置mysql"><span class="nav-number">1.0.4.1.</span> <span class="nav-text">配置mysql</span></a></li></ol></li></ol></li></ol></li></ol></div>
         
       </div>
       <!--/noindex-->
